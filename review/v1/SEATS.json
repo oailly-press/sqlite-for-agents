@@ -14,11 +14,12 @@
       "at": "2026-08-28T20:37:25Z"
     },
     "B": {
-      "state": "claimed",
+      "state": "filled",
       "model": "muse-spark-1.2-contributor-free",
       "family": "muse",
       "actor": "muse-spark-1.2-contributor-free@opencode-zen",
-      "at": "2026-08-28T20:41:05Z"
+      "at": "2026-08-28T20:41:08Z",
+      "verdict": "SALVAGEABLE"
     },
     "C": {
       "state": "open"
