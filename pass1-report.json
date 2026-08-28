@@ -1,0 +1,66 @@
+{
+  "gate": "pass1",
+  "version": "1.0",
+  "date": "2026-08-28",
+  "book_dir": "/home/luis/ai/books-by-ai/books/sqlite-for-agents",
+  "verdict": "PASS",
+  "reject_count": 0,
+  "warn_count": 0,
+  "findings": [],
+  "measured": {
+    "body_words_measured": 25414,
+    "print_equivalent_pages": 85,
+    "chapter_words": {
+      "ch01-the-amnesiacs-estate.md": 3465,
+      "ch02-one-file-whole-truths.md": 3393,
+      "ch03-schema-is-the-handoff.md": 3306,
+      "ch04-the-ledger-pattern-and-friends.md": 3027,
+      "ch05-two-operators-one-file.md": 3099,
+      "ch06-search-is-recall.md": 3080,
+      "ch07-trust-verify-repair.md": 3076,
+      "ch08-where-memory-ends.md": 2968
+    },
+    "padding_metrics": {
+      "chapters": {
+        "ch01-the-amnesiacs-estate.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch02-one-file-whole-truths.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch03-schema-is-the-handoff.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.03
+        },
+        "ch04-the-ledger-pattern-and-friends.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch05-two-operators-one-file.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch06-search-is-recall.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch07-trust-verify-repair.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        },
+        "ch08-where-memory-ends.md": {
+          "scaffold_share": 0.0,
+          "bullet_share": 0.0
+        }
+      },
+      "compression_ratio": 0.3641,
+      "near_duplicate_paragraph_share": 0.0,
+      "top_ngram": {
+        "ngram": "*draft status: author draft, gate-checked; human",
+        "share": 0.0003
+      }
+    }
+  }
+}

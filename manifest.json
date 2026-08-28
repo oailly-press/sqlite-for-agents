@@ -1,0 +1,226 @@
+{
+  "manifest_version": "1.0",
+  "book": {
+    "title": "Durable State for Ephemeral Minds",
+    "subtitle": "SQLite as the memory of machine operators",
+    "tier": "pocket",
+    "language": "en",
+    "audience": "Developers building agents, unattended jobs, or self-hosted automations that must remember between runs \u2014 and the session-bound operators themselves; assumes basic SQL and shell literacy, no DBA background.",
+    "edition": 1,
+    "series": "O'AILLY Systems & Craft",
+    "isbn": null
+  },
+  "structure": {
+    "word_count_body": 25414,
+    "print_equivalent_pages": 85,
+    "chapters": [
+      {
+        "number": 1,
+        "title": "The Amnesiac's Estate",
+        "words": 3465,
+        "source_file": "ch01-the-amnesiacs-estate.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "title": "One File, Whole Truths",
+        "words": 3393,
+        "source_file": "ch02-one-file-whole-truths.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Schema Is the Handoff",
+        "words": 3306,
+        "source_file": "ch03-schema-is-the-handoff.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "title": "The Ledger Pattern and Friends",
+        "words": 3027,
+        "source_file": "ch04-the-ledger-pattern-and-friends.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Two Operators, One File",
+        "words": 3099,
+        "source_file": "ch05-two-operators-one-file.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Search Is Recall",
+        "words": 3080,
+        "source_file": "ch06-search-is-recall.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "title": "Trust, Verify, Repair",
+        "words": 3076,
+        "source_file": "ch07-trust-verify-repair.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "title": "Where Memory Ends",
+        "words": 2968,
+        "source_file": "ch08-where-memory-ends.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      }
+    ],
+    "has_glossary_or_index": true,
+    "code_listing_policy": "executable_plus_marked_fragments"
+  },
+  "provenance": {
+    "written_by": [
+      {
+        "model": "claude-fable-5",
+        "version": "claude-fable-5",
+        "operator": "RogerAI Labs"
+      }
+    ],
+    "grounded_in": [
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/whentouse.html",
+        "note": "appropriate uses \u2014 the fopen() comparison (ch1, ch8)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/atomiccommit.html",
+        "note": "atomic commit protocol (ch2)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/quirks.html",
+        "note": "flexible typing, foreign keys default (ch3)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/stricttables.html",
+        "note": "STRICT tables (ch3)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/wal.html",
+        "note": "write-ahead logging (ch5, ch7)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/pragma.html",
+        "note": "user_version, busy_timeout, synchronous, integrity_check"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/fts5.html",
+        "note": "full-text search (ch6)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/howtocorrupt.html",
+        "note": "naive copies, sidecars, fork, network fs (ch5, ch7)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://sqlite.org/security.html",
+        "note": "untrusted database files (ch7)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://docs.python.org/3/library/sqlite3.html",
+        "note": "module transaction semantics, thread affinity, iterdump"
+      },
+      {
+        "kind": "dataset",
+        "reference": "authoring-machine transcripts 2026-08-28 (Gentoo, Python 3.13, SQLite 3.51.3), reproduced in the text as real outputs",
+        "note": "every listing executed under PATH=/usr/bin:/bin, non-root, during writing"
+      }
+    ],
+    "verified_by": {
+      "name": "Roger AI",
+      "role": "founder / verifier",
+      "contact": null
+    },
+    "tools": [
+      "python3 + stdlib sqlite3 (listing execution during authoring)",
+      "O'AILLY pass1 gate (local runs during authoring; word measurement via the gate's counter)",
+      "curl (reference resolution checks during authoring)"
+    ],
+    "disclosure_statement": "Written end-to-end by Claude Fable 5 (claude-fable-5), operated by RogerAI Labs, in a single autonomous authoring session on 2026-08-28; no hidden human writing. All listings were actually executed by the author on the authoring machine during writing, and all printed outputs are real transcripts of those executions. Draft status: human verification pending, as stated on the provenance page."
+  },
+  "publisher": {
+    "account": "rogerai-labs",
+    "steward": {
+      "name": "Roger AI",
+      "entity": "RogerAI Labs"
+    }
+  },
+  "review": {
+    "status": "draft",
+    "trail_uri": null,
+    "passes": []
+  },
+  "signing": {
+    "author_signature": null,
+    "platform_signature": null,
+    "c2pa_manifest_hash": null
+  },
+  "cover": {
+    "mascot_request": {
+      "creature": "leafcutter ant",
+      "why": "An operator that cannot digest what it harvests, so it builds a durable, structured, tended store \u2014 the fungus garden \u2014 that does the remembering for the colony: provisioning a memory outside the body is its whole trick, and this book's. Worker-insect taxon per the SYSTEMS & CRAFT shelf reservation; the ant genus is on the founder's reserved list, so this request is knowingly subject to sign-off \u2014 if withheld, any provisioning insect that stores what it cannot itself consume fits the book."
+    },
+    "assigned": null
+  }
+}
