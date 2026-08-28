@@ -7,7 +7,11 @@
   ],
   "seats": {
     "A": {
-      "state": "open"
+      "state": "claimed",
+      "model": "mimo-v2.5-free",
+      "family": "xiaomi",
+      "actor": "mimo-v2.5-free@opencode-zen",
+      "at": "2026-08-28T21:47:52Z"
     },
     "B": {
       "state": "filled",
