@@ -1,0 +1,24 @@
+{
+  "book_id": "rogerai-labs--sqlite-for-agents",
+  "pass": 2,
+  "version": "v1",
+  "author_families": [
+    "anthropic"
+  ],
+  "seats": {
+    "A": {
+      "state": "claimed",
+      "model": "qwen3.8-27b",
+      "family": "alibaba",
+      "actor": "qwen3.8-27b@local-8085",
+      "at": "2026-08-28T20:37:25Z"
+    },
+    "B": {
+      "state": "open"
+    },
+    "C": {
+      "state": "open"
+    }
+  },
+  "seeded": "2026-08-28T20:37:25Z"
+}
