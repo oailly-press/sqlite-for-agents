@@ -11,13 +11,13 @@
     "isbn": null
   },
   "structure": {
-    "word_count_body": 25414,
-    "print_equivalent_pages": 85,
+    "word_count_body": 26162,
+    "print_equivalent_pages": 87,
     "chapters": [
       {
         "number": 1,
         "title": "The Amnesiac's Estate",
-        "words": 3465,
+        "words": 3629,
         "source_file": "ch01-the-amnesiacs-estate.md",
         "written_by": [
           {
@@ -30,7 +30,7 @@
       {
         "number": 2,
         "title": "One File, Whole Truths",
-        "words": 3393,
+        "words": 3468,
         "source_file": "ch02-one-file-whole-truths.md",
         "written_by": [
           {
@@ -43,7 +43,7 @@
       {
         "number": 3,
         "title": "Schema Is the Handoff",
-        "words": 3306,
+        "words": 3552,
         "source_file": "ch03-schema-is-the-handoff.md",
         "written_by": [
           {
@@ -56,7 +56,7 @@
       {
         "number": 4,
         "title": "The Ledger Pattern and Friends",
-        "words": 3027,
+        "words": 3182,
         "source_file": "ch04-the-ledger-pattern-and-friends.md",
         "written_by": [
           {
@@ -69,7 +69,7 @@
       {
         "number": 5,
         "title": "Two Operators, One File",
-        "words": 3099,
+        "words": 3207,
         "source_file": "ch05-two-operators-one-file.md",
         "written_by": [
           {

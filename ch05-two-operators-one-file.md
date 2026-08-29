@@ -227,11 +227,19 @@ milliseconds.
 Chapter 2 counseled leaving `synchronous` at its default and this chapter
 must refine that advice once, because WAL changes the trade's terms in the
 operator's favor. Under rollback journaling, lowering sync guarantees risks
-corruption; under WAL, the engine documents a gentler middle: `synchronous =
-NORMAL` syncs at checkpoints rather than at every commit, cannot corrupt the
-database on power loss, and risks only the *most recent commits rolling
-back* if power dies before the next checkpoint — process crashes lose
-nothing either way. For an estate on a workstation or a battery-backed
+corruption; under WAL, the engine documents a gentler middle. `synchronous =
+NORMAL` syncs at checkpoints rather than at every commit and — so long as the
+`-wal` sidecar is preserved and the storage stack honors the sync each
+checkpoint does issue — cannot corrupt the database on power loss; what it
+risks is only the *most recent commits rolling back* to the last checkpoint if
+power dies before the next one. The documentation states the trade in plain
+words: under NORMAL, transactions "are no longer durable and might rollback
+following a power failure or hard reset" (Ref 16). Process crashes lose
+nothing either way. The qualifier is load-bearing, and worth saying twice: the
+promise is against *corruption*, not against losing the tail of recent commits,
+and it holds only while the `-wal` file stays with its database — which is
+exactly why chapter 7 counts deleting or copying around the sidecar as the
+classic way to turn "durable" into "lost." For an estate on a workstation or a battery-backed
 machine, WAL + NORMAL is the documented sweet spot and this book's
 recommendation, set in `open_estate()` with the reason recorded in the
 settings history (chapter 4's pattern eating its own cooking). The estate

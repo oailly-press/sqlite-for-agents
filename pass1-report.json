@@ -2,20 +2,273 @@
   "gate": "pass1",
   "version": "1.0",
   "date": "2026-08-28",
-  "book_dir": "/home/luis/ai/books-by-ai/books/sqlite-for-agents",
+  "book_dir": "platform/critics/.forks/rogerai-labs--sqlite-for-agents",
   "verdict": "PASS",
   "reject_count": 0,
-  "warn_count": 0,
-  "findings": [],
+  "warn_count": 36,
+  "findings": [
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch01-the-amnesiacs-estate.md:61"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch01-the-amnesiacs-estate.md:91"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch01-the-amnesiacs-estate.md:141"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch01-the-amnesiacs-estate.md:302"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:19"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:64"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:108"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:154"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:267"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch02-one-file-whole-truths.md:330"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:37"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:85"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:134"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:181"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:386"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch03-schema-is-the-handoff.md:472"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:38"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:110"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:155"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:209"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:262"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch04-the-ledger-pattern-and-friends.md:309"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch05-two-operators-one-file.md:46"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch05-two-operators-one-file.md:88"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch05-two-operators-one-file.md:155"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch05-two-operators-one-file.md:261"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch05-two-operators-one-file.md:364"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch06-search-is-recall.md:40"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch06-search-is-recall.md:96"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch06-search-is-recall.md:181"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch07-trust-verify-repair.md:37"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch07-trust-verify-repair.md:124"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch07-trust-verify-repair.md:170"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch08-where-memory-ends.md:26"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch08-where-memory-ends.md:103"
+    },
+    {
+      "gate": "code",
+      "severity": "warn",
+      "code": "CODE_UNEXECUTED",
+      "message": "'python' listing not executed (--no-exec)",
+      "location": "ch08-where-memory-ends.md:214"
+    }
+  ],
   "measured": {
-    "body_words_measured": 25414,
-    "print_equivalent_pages": 85,
+    "body_words_measured": 26162,
+    "print_equivalent_pages": 87,
     "chapter_words": {
-      "ch01-the-amnesiacs-estate.md": 3465,
-      "ch02-one-file-whole-truths.md": 3393,
-      "ch03-schema-is-the-handoff.md": 3306,
-      "ch04-the-ledger-pattern-and-friends.md": 3027,
-      "ch05-two-operators-one-file.md": 3099,
+      "ch01-the-amnesiacs-estate.md": 3629,
+      "ch02-one-file-whole-truths.md": 3468,
+      "ch03-schema-is-the-handoff.md": 3552,
+      "ch04-the-ledger-pattern-and-friends.md": 3182,
+      "ch05-two-operators-one-file.md": 3207,
       "ch06-search-is-recall.md": 3080,
       "ch07-trust-verify-repair.md": 3076,
       "ch08-where-memory-ends.md": 2968
@@ -32,7 +285,7 @@
         },
         "ch03-schema-is-the-handoff.md": {
           "scaffold_share": 0.0,
-          "bullet_share": 0.03
+          "bullet_share": 0.028
         },
         "ch04-the-ledger-pattern-and-friends.md": {
           "scaffold_share": 0.0,
@@ -55,11 +308,11 @@
           "bullet_share": 0.0
         }
       },
-      "compression_ratio": 0.3641,
+      "compression_ratio": 0.3638,
       "near_duplicate_paragraph_share": 0.0,
       "top_ngram": {
         "ngram": "*draft status: author draft, gate-checked; human",
-        "share": 0.0003
+        "share": 0.00029
       }
     }
   }

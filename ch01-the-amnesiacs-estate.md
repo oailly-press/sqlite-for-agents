@@ -141,12 +141,14 @@ the counter:
 ```python
 import sqlite3
 db = sqlite3.connect("estate.db")
+db.execute("PRAGMA busy_timeout = 5000")   # wait for the write slot, don't fail on contact
 db.execute("CREATE TABLE counters (name TEXT PRIMARY KEY, value INTEGER NOT NULL)")
 db.execute("INSERT INTO counters VALUES ('runs', 0)")
 db.commit()
 for operator in ("A", "B"):
-    with db:
-        db.execute("UPDATE counters SET value = value + 1 WHERE name = 'runs'")
+    db.execute("BEGIN IMMEDIATE")          # take the single write slot up front
+    db.execute("UPDATE counters SET value = value + 1 WHERE name = 'runs'")
+    db.commit()
 print("expected 2 runs, database says:",
       db.execute("SELECT value FROM counters WHERE name = 'runs'").fetchone()[0])
 ```
@@ -158,9 +160,16 @@ expected 2 runs, database says: 2
 The difference is not care; it is where the read-modify-write happens. `UPDATE
 counters SET value = value + 1` performs the read and the write inside the
 engine, inside a transaction, so there is no window in which a second operator's
-stale read can erase the first's work. The `with db:` block is Python's spelling
-of that transaction — chapter 2 dissects exactly what it promises and where its
-edges are. What deserves notice now is the cost side: the entire apparatus was
+stale read can erase the first's work. Two lines make that safe once the writers
+are *real* operators — separate processes, not one careful loop: `BEGIN
+IMMEDIATE` claims SQLite's single write slot at the start of the transaction
+rather than mid-flight, and `PRAGMA busy_timeout` tells an operator that finds
+the slot taken to wait its turn instead of failing on contact. This listing runs
+both increments on one connection to keep the demonstration printable and
+deterministic; chapter 5 stages the very same counter across two genuinely
+separate processes, doing a hundred increments each, and the count still lands at
+exactly two hundred — the proof that this two-line recipe, not luck, is what
+retires the lost update under concurrency. What deserves notice now is the cost side: the entire apparatus was
 `import sqlite3` and a filename. No server was installed, no daemon started, no
 port opened, no credentials minted. The engine ships inside Python's standard
 library — the authoring machine's build carries SQLite 3.51 — and the database
@@ -191,18 +200,24 @@ in SQLite files in the profile directory; Chromium likewise; the phone in your
 pocket holds hundreds of such databases — messages, photos metadata, application
 state — because both major mobile platforms made SQLite the blessed container
 for structured application data. The engine's documentation keeps a page of
-these deployments, and the aggregate claim it supports is worth internalizing:
-whenever software with real engineering budgets needed exactly what our
-operators need — durable, queryable, transactional state in a self-contained
-file, no administrator anywhere — this is what it converged on, independently,
-across decades and industries. A browser is, in the terms of this chapter, an
+these deployments — browsers, phones, operating systems, embedded devices — and
+that page makes no argument beyond the sheer count; the pattern in it is the
+reader's to draw. Drawn, it is worth internalizing: whenever software with real
+engineering budgets needed durable, queryable, transactional state in a
+self-contained file with no administrator anywhere — the properties our operators
+need too — this is disproportionately what it reached for, independently, across
+decades and industries. The convergence is an inference to weigh, not a claim the
+documentation makes; but the list that prompts it is long, and the properties
+that recur down it are exactly the estate's. A browser is, in the terms of this chapter, an
 amnesiac operator too: each launch inherits only what the last one wrote down,
 and what it writes down is an estate database. The operators this book serves
 are late to a well-set table.
 
-The engine's authors make the argument in its general form on a page every
-estate designer should read once: SQLite as an *application file format*. The
-choice they frame is precisely the midden question. A custom file format —
+The engine's authors make the argument in its general form on a page this book
+commends to every estate designer: SQLite as an *application file format*. The
+choice they lay out there — a fully custom format, versus a pile-of-files, versus
+a structured single-file database — is, in this book's terms, precisely the
+midden question. A custom file format —
 every ad-hoc JSON layout is one — buys a parsing burden, no transactions, no
 incremental update, and no query language. A *pile-of-files* format buys
 partial-write windows across the pile and an opaque whole. A SQLite file buys

@@ -158,11 +158,15 @@ connection starts with it off, and `PRAGMA foreign_keys = ON` must be issued
 *per connection* — not once per database, which is the misunderstanding that
 produces estates that were protected on Tuesdays. The operational consequence
 is a ritual this book now installs and never abandons: estates are opened by
-one function, and that function issues the pragmas. Scattered
+one function, and that function issues every connection-scoped pragma the estate
+depends on — foreign keys here, and the busy timeout and WAL that chapter 5 will
+justify, all set in one place before any work begins. Scattered
 `sqlite3.connect()` calls throughout a codebase are how one forgotten switch
 quietly waives the constraints everywhere; a single `open_estate()` is how a
 decision is made once. The migration listing below *is* that function, because
-the open ritual and versioning belong together.
+the open ritual and versioning belong together — and because the pragmas it sets
+are the same ones chapter 5's covenant names, the function you copy here already
+carries chapter 5's concurrency guarantees, not this chapter's alone.
 
 ## Born versioned
 
@@ -183,7 +187,10 @@ MIGRATIONS = [
 ]
 def open_estate(path):
     db = sqlite3.connect(path)
-    db.execute("PRAGMA foreign_keys = ON")
+    db.execute("PRAGMA busy_timeout = 5000")     # wait for the write slot (chapter 5)
+    db.execute("PRAGMA journal_mode = WAL")      # readers and writers stop blocking (chapter 5)
+    db.execute("PRAGMA synchronous = NORMAL")    # the documented WAL sweet spot (chapter 5)
+    db.execute("PRAGMA foreign_keys = ON")       # enforce references, and per connection
     applied = db.execute("PRAGMA user_version").fetchone()[0]
     for version, ddl in MIGRATIONS:
         if version > applied:
@@ -219,8 +226,9 @@ leaves the file honestly at the old version, ready to retry, never half-moved.
 And migrations are pure DDL applied at open, before any data work — chapter 2's
 separation of schema phase from data phase, now with an address. (SQLite's
 `ALTER TABLE` is deliberately minimal — add, rename, drop; no type changes —
-and the documentation's sanctioned workaround for bigger reshapes, build-new,
-copy, swap inside a transaction, is chapter 5's atomic-replace instinct applied
+and the documentation's sanctioned workaround for bigger reshapes — the
+twelve-step build-new, copy, swap procedure detailed later in this chapter — is
+chapter 5's atomic-replace instinct applied
 to tables. Design so you rarely need it; the migration list makes even that
 reshaping a recorded, replayable event.)
 
@@ -323,21 +331,45 @@ never destroys its input in the same migration that derives from it — the
 old column survives until a later migration retires it, one version after
 the new column has been read in anger. For reshapes beyond ALTER TABLE's
 deliberate minimalism — type changes, constraint additions to existing
-columns — the engine's documentation prescribes the rebuild: create the new
-table, copy with a transforming SELECT, drop the old, rename — all inside
-one transaction, the atomic-swap instinct applied to tables:
+columns, a PRIMARY KEY or UNIQUE added after the fact — the engine's
+documentation prescribes not a one-liner but a precise *twelve-step* procedure,
+and the steps that a casual "create-copy-drop-rename" omits are exactly the ones
+that bite an estate whose open ritual enforces foreign keys. Foreign-key
+enforcement must be turned **off** for the duration (the rebuild drops and
+recreates a table other rows may reference); the old table's indexes, triggers,
+and views must be remembered before the drop and recreated after the rename
+(they do not follow the data across); and `PRAGMA foreign_key_check` must run
+before the commit to prove nothing was orphaned. Order matters most of all: the
+new table is built under a *new* name and renamed into place — never the old one
+renamed out of the way first, which (since SQLite 3.25/3.26 carries renames into
+triggers, views, and FK references) can corrupt exactly those references. The
+documentation draws the correct and incorrect orderings side by side; the estate
+follows the correct one, inside one transaction, as a recorded migration:
 
 ```python fragment
-# The sanctioned reshape, per the ALTER TABLE documentation — one transaction:
-# CREATE TABLE facts_new (...corrected shape...) STRICT;
-# INSERT INTO facts_new SELECT ...transformed... FROM facts;
-# DROP TABLE facts;
-# ALTER TABLE facts_new RENAME TO facts;
+# The sanctioned table rebuild — the ALTER TABLE documentation's twelve steps
+# (https://sqlite.org/lang_altertable.html §8), run as one migration entry:
+# PRAGMA foreign_keys = OFF;                       # (1) FKs off for the rebuild
+# BEGIN;                                           # (2) one transaction
+#   # (3) remember what to recreate in step (8):
+#   #     SELECT type, sql FROM sqlite_schema WHERE tbl_name = 'facts';
+#   CREATE TABLE facts_new (...corrected shape...) STRICT;    # (4) NEW name
+#   INSERT INTO facts_new SELECT ...transformed... FROM facts;# (5) copy
+#   DROP TABLE facts;                              # (6)
+#   ALTER TABLE facts_new RENAME TO facts;         # (7) rename new -> old
+#   # (8) recreate the saved indexes/triggers/views on facts
+#   # (9) recreate any external views that referenced facts
+#   PRAGMA foreign_key_check;                      # (10) verify no orphans
+# COMMIT;                                          # (11)
+# PRAGMA foreign_keys = ON;                        # (12) re-enable enforcement
 ```
 
 A reshape is the most invasive act an estate performs on itself, which is why
 it lives in the migration list — versioned, transactional, replayed
-identically by every opener — rather than in any session's ad-hoc hands. The
+identically by every opener — rather than in any session's ad-hoc hands. Because
+`open_estate()` opens with foreign keys *on*, a rebuild migration is the one
+place that toggles them off and back within its own transaction, restoring the
+ritual's invariant the moment it commits. The
 stranger's guarantee survives even this: whatever generation of the schema
 they open, the road from there to current is recorded, ordered, and runs
 itself.
@@ -487,8 +519,9 @@ section above.
 1. Is every table STRICT, with types from the real repertoire?
 2. Does every enumerable column enumerate (CHECK ... IN), and every
    invariant that spans columns have its table-level CHECK?
-3. Is `PRAGMA foreign_keys = ON` issued by the one shared open ritual —
-   and is there exactly one open ritual?
+3. Does the one shared open ritual issue every connection-scoped pragma —
+   `foreign_keys = ON`, `busy_timeout`, `journal_mode = WAL`,
+   `synchronous = NORMAL` — and is there exactly one open ritual?
 4. Does the file carry its version, and does opening apply an append-only
    migration list idempotently, DDL alone, one transaction per step?
 5. Do all record tables carry the provenance block — recorded_at (UTC ISO,

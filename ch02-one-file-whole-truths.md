@@ -269,6 +269,8 @@ import sqlite3, time
 db = sqlite3.connect("estate.db")
 db.execute("CREATE TABLE readings (id INTEGER PRIMARY KEY, v INTEGER)")
 db.commit()
+print("pragmas in effect:", db.execute("PRAGMA journal_mode").fetchone()[0],
+      "journal,", "synchronous", db.execute("PRAGMA synchronous").fetchone()[0], "(FULL)")
 t0 = time.monotonic()
 for i in range(2000):
     with db:                                   # one transaction per row
@@ -285,14 +287,22 @@ print("rows landed:", db.execute("SELECT count(*) FROM readings").fetchone()[0])
 ```
 
 ```output
+pragmas in effect: delete journal, synchronous 2 (FULL)
 2000 rows, 2000 commits: 22 ms
 2000 rows, 1 commit:     2 ms
 rows landed: 4000
 ```
 
-An order of magnitude on the authoring machine — whose NVMe storage and write
+The listing prints its own configuration first, because the numbers mean nothing
+without it: this ran at the engine's *defaults* — the classic rollback journal
+(`delete` mode) and `synchronous = FULL`, the full durability setting chapter 2
+counsels keeping — not under WAL (chapter 5) and not with sync weakened. That
+disclosure is the difference between a reproducible claim and a lucky
+transcript, because both figures below are dominated by exactly those two
+pragmas. An order of magnitude on the authoring machine — whose NVMe storage and write
 caching flatter the per-commit case enormously; on modest hardware with honest
-sync barriers the same experiment runs seconds against milliseconds, and the
+sync barriers the same experiment, at these same pragmas, runs seconds against
+milliseconds, and the
 engine's own FAQ answer on insertion speed explains why: a durable transaction
 cannot outrun the platter or the flash erase block it waits on. The design
 consequence is not "avoid commits" but the same boundary rule as before, read
