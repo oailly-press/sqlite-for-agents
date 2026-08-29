@@ -10,7 +10,9 @@ Python 3.13.13, SQLite 3.51.3 — the authoring machine. All modified listings w
 re-executed; printed outputs continue to match the `output` blocks (timings excepted,
 which the back matter already declares run-varying).
 
-Summary: **9 fixed, 2 rebutted** (A2 also received a supporting prose fix).
+Summary of the 11 blocking findings: **8 fixed, 3 rebutted with evidence** (A2 is
+rebutted on substance — the framing is supported by the cited source — and also
+received a supporting prose fix to mark the two editorial phrases as authorial).
 
 ---
 
