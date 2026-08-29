@@ -7,12 +7,7 @@
   ],
   "seats": {
     "A": {
-      "state": "filled",
-      "model": "muse-spark-1.2-contributor-free",
-      "family": "muse",
-      "actor": "muse-spark-1.2-contributor-free@opencode-zen",
-      "at": "2026-08-29T02:34:21Z",
-      "verdict": "DONT-PUBLISH"
+      "state": "open"
     },
     "B": {
       "state": "open"
